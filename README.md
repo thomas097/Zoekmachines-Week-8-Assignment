@@ -1,2 +1,2 @@
 # Zoekmachines-Week-8-Assignment
-Repo contains the Elastic Search asignment of Zoekmachines 2018
+This repository contains the Elastic Search asignment for Zoekmachines 2018. The project is described in-depth in the following wiki: https://github.com/thomas097/Zoekmachines-Week-8-Assignment/wiki
