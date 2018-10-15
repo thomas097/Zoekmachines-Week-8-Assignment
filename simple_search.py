@@ -10,7 +10,7 @@ import re
 '''
 
 # creates a snippet containing the most amount of words from the query
-def create_snippet(lyrics, query, length=20):
+def create_snippet(lyrics, query, length):
     query_terms = set(query.split(' '))
     lyrics_terms = lyrics.replace('\n', ' ').split(' ')
     
@@ -27,19 +27,19 @@ def create_snippet(lyrics, query, length=20):
 
 # implements simple keyword search in the indexed lyrics
 # returns N tuples of (title, artist, genre, year, lyrics snippet)
-def simple_search(es, index, query, N=10):
+def simple_search(es, index, query, N=10, snip_size=20):
     res = es.search(index=index, body={"query": {"match": {'lyrics': query}}, "size":N})
     results_list = []
     for hit in res['hits']['hits']:
         song = hit['_source']
-        hit = (song['song_title'], song['artist'], song['genre'],
-               song['year'], create_snippet(song['lyrics'], query))
+        hit = (song['song_title'], song['artist'], song['genre'], song['year'],
+               create_snippet(song['lyrics'], query, snip_size))
         results_list.append(hit)
     return results_list
 
 '''
 # init elastic search
 es = Elasticsearch(hosts=['http://localhost:9200/'])
-res = simple_search(es, 'songs', 'all the single ladies', N=20)
+res = simple_search(es, 'songs', 'all the single ladies', N=10, snip_size=20)
 pprint(res)
 '''
