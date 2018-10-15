@@ -34,17 +34,6 @@ def create_snippet(lyrics, query, length):
 
 # implements simple keyword search in the indexed lyrics
 # returns N tuples of (title, artist, genre, year, lyrics snippet)
-def simple_search(es, index, query, N=10, snip_size=20):
-    res = es.search(index=index, body={"query": {"query_string": {"fields": ["song_title", "artist"], "query": query}}, "size":N})
-    results_list = []
-    for hit in res['hits']['hits']:
-        song = hit['_source']
-        hit = (song['song_title'], song['artist'], song['genre'], song['year'],
-               create_snippet(song['lyrics'], query, snip_size))
-        results_list.append(hit)
-    return results_list
-
-
 def harder_simple_search(es, index, lyrics, artist, N=10, snip_size=20):
     query = lyrics + " and " + artist
     res = es.search(index=index, body={"query": {"query_string": {"fields": ["song_title", "artist"], "query": query}}, "size":N})
