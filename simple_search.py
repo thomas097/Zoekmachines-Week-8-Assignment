@@ -39,6 +39,8 @@ def simple_search(es, index, query, N=10, snip_size=20):
 
 
 # init elastic search
-# es = Elasticsearch(hosts=['http://localhost:9200/'])
-# res = simple_search(es, 'songs', 'all the single ladies', N=10, snip_size=20)
-# pprint(res)
+es = Elasticsearch(hosts=['http://localhost:9200/'])
+res = simple_search(es, 'songs', 'all the single ladies')
+pprint(res)
+'''
+
