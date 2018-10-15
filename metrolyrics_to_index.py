@@ -55,4 +55,5 @@ helpers.bulk(es, docs)
 es.indices.refresh(index=index)
 
 # DONE!
+print('done!')
 
