@@ -28,7 +28,11 @@ def create_snippet(lyrics, query, length):
 # implements simple keyword search in the indexed lyrics
 # returns N tuples of (docID, title, artist, genre, year, lyrics snippet)
 def simple_search(es, index, query, N=10, snip_size=20):
-    res = es.search(index=index, body={"query": {"match": {'lyrics': query}}, "size":N})
+    # define query
+    dict_query = {"query":{"query_string":{"fields":["lyrics"], "query":query}}, "size":N}
+    # pose query to system
+    res = es.search(index=index, body=dict_query)
+    # format results
     results_list = []
     for hit in res['hits']['hits']:
         song = hit['_source']
@@ -40,6 +44,6 @@ def simple_search(es, index, query, N=10, snip_size=20):
 
 # init elastic search
 es = Elasticsearch(hosts=['http://localhost:9200/'])
-res = simple_search(es, 'songs', 'all the single ladies', N=10, snip_size=20)
+res = simple_search(es, 'songs', 'rihanna', N=10, snip_size=20)
 pprint(res)
 
