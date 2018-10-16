@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block search %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="portfolio-wrapper text-center">
+
+        <div class="col-md-1 col-sm-1 col-xs-1"></div>
+        <div class="col-md-10 col-sm-10 col-xs-10">
+
+
+            {% for key in result %}
+            <a data-toggle="collapse" href="#{{ key }}">
+                <div class="community-edition2">
+
+                    <div class="row">
+
+                        <div class="col-md-3 col-sm-2 col-xs-1"></div>
+
+                        <div class="col-md-6 col-sm-8 col-xs-10">
+                            <table style="width: 100%; height: 50px">
+                                <tr>
+                                    <td>
+                                        <h4>{{ result[key]["artist"] }}</h4>
+                                        <h6>{{ result[key]["song"] }} ({{ result[key]["year"] }})</h6>
+                                        <h6>{{ result[key]["genre"] }}</h6>
+                                        <p>{{ result[key]["lyrics"] }}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+            </a>
+            <div id="{{ key }}" class="row collapse tablelist">
+                <table class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th>Lyrics: </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td> {{ result[key]["lyrics"] }}</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="col-md-1 col-sm-1 col-xs-1"></div>
+
+</div>
+</div>
+
+{% endblock %}
