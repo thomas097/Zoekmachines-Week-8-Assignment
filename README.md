@@ -6,10 +6,10 @@ https://github.com/thomas097/Zoekmachines-Week-8-Assignment/wiki/Zoekmachines-El
 
 ``` Progress:
 Index: Af, maar alleen nog even de pre-processing afstemmen.
-Q1: Losse functie simple_search() is af
-Q2: Losse functie advanced_search() is af
-Q3: af
-Q4: af
+Q1: af, simple_search() als strikte conjunctieve query
+Q2: af, advanced_search()
+Q3: af, maar moet nog mooi .PNGtje maken met library
+Q4: af, output is timeline.png
 Q5: David bezig
 Q6: ?
 Demo: Nathan bezig
