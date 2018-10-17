@@ -54,7 +54,7 @@ def lyric_search(lyrics, artist):
 
 
 # implements simple keyword search in the indexed lyrics
-def faceted_search(es, index, lyrics, artist, N=10, snip_size=20):
+def faceted_search(es, index, lyrics, artist, genre_filter, N=10, snip_size=20):
     #query = lyrics + " and " + artist
     query = create_search(lyrics, artist)
     print(query)
@@ -68,11 +68,8 @@ def faceted_search(es, index, lyrics, artist, N=10, snip_size=20):
                     }
                 },
                 "filter": [
-                    {
-                        "range": {
-                            "year": {"lte": 2017}
-                        }
-                    }
+                    { "range": {"year": {"lte": 2017}}},
+	                { "term": {"genre": genre_filter}}
                 ]
             }
         },
@@ -89,5 +86,5 @@ def faceted_search(es, index, lyrics, artist, N=10, snip_size=20):
 
 # init elastic search
 es = Elasticsearch(hosts=['http://localhost:9200/'])
-res = faceted_search(es, 'songs', ['single ladies'], ['Beyonce'], N=10, snip_size=20)
+res = faceted_search(es, 'songs', ['single ladies'], ['Beyonce'], 'rock', N=10, snip_size=20)
 pprint(res)
