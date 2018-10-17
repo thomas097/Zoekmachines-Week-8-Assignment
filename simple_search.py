@@ -38,9 +38,11 @@ def simple_search(es, index, query, N=10, snip_size=20):
                            }
                        },
                   "size":N}
+    
     # pose query to system
     res = es.search(index=index, body=dict_query)
-    # format results
+    
+    # format and return result list
     results_list = []
     for hit in res['hits']['hits']:
         song = hit['_source']

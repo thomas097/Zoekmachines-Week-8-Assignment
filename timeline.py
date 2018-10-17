@@ -14,7 +14,7 @@ import numpy as np
 
 # implements simple keyword search in the indexed lyrics
 # returns N tuples of (docID, title, artist, genre, year, lyrics snippet)
-def timeline(es, index, query, fname):
+def timeline(es, index, query, path):
     # define query to obtain the release dates of 10000 songs
     dict_query = {"_source": ["year"],
                   "query":{
@@ -35,16 +35,12 @@ def timeline(es, index, query, fname):
     counts = Counter([int(x['_source']['year']) for x in res['hits']['hits']])
     years, counts = zip(*sorted(counts.items()))
 
-    # normalize counts
-    total = sum(counts)
-    counts = [c/total for c in counts]
-
-    # create figure and save to disk as fname
+    # create figure and save to path
     fig, ax = plt.subplots()
     ax.set_yticklabels([])
     plt.plot(years, counts, 'b-')
     ax.fill_between(years, 0, counts, color='b') 
-    fig.savefig(fname)
+    fig.savefig(path)
 
 
 # init elastic search
