@@ -8,8 +8,8 @@ https://github.com/thomas097/Zoekmachines-Week-8-Assignment/wiki/Zoekmachines-El
 Index: Af, maar alleen nog even de pre-processing afstemmen.
 Q1: af, simple_search() als strikte conjunctieve query
 Q2: af, advanced_search()
-Q3: af, output is wordcloud.png
-Q4: af, output is timeline.png
+Q3: af, word_cloud() output is wordcloud.png
+Q4: af, timeline() output is timeline.png
 Q5: David bezig
 Q6: ?
 Demo: Nathan bezig
