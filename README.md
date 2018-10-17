@@ -14,3 +14,20 @@ Q5: ?
 Q6: ?
 Demo: Sampletje met Flask
 ```
+
+
+
+{"query": 
+    {"bool":
+        { "must":
+            {"query_string":
+                {"fields":["song_title", "artist^5"], "query": query}
+            }, 
+            {"filter":
+                {"range":{"year":{"gte":2017}}}
+            }
+        }
+    }, "size":N
+})
+
+{"query": {"bool":{ "must":{"query_string":{"fields":["song_title", "artist^5"], "query": query}}, {"filter":{"range":{"year":{"gte":2017}}}}}}, "size":N})
