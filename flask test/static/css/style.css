@@ -1,0 +1,205 @@
+body{
+	background-color: #f9f9f9;
+	font-family: Arial;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+}
+
+
+.navbar {
+	margin-right: -20px;
+	width: auto;
+	border-radius: 0;
+	background: white;
+	height: 100px;
+	padding-top: 20px;
+	box-shadow: 0px 0px 1px lightgray;
+}
+
+
+.yellow {
+	font-size: 25px;
+	color:  #A84C00;
+	font-family: Arial;
+	font-weight: bold;
+}
+
+.green {
+	font-size: 25px;
+	color: #008600;
+	font-weight: bold;
+	font-family: Arial;
+}
+.blue {
+	font-size: 25px;
+	color: #006565;
+	font-weight: bold;
+	font-family: Arial;
+}
+.red {
+	font-size: 45px;
+	color: #a80000;
+	font-weight: bold;
+	font-family: Arial;
+}
+
+.centralwrap {
+    position: absolute;
+    width: 100%;
+    top: 100px;
+    bottom: 60px;
+    overflow-y:scroll;
+    overflow-x:hidden
+}
+
+::-webkit-scrollbar, ::-webkit-scrollbar:hover
+{
+  cursor: pointer;
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  cursor:pointer;
+  background: rgba(0, 0, 0, 0.0);
+}
+
+::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb:hover
+{
+  cursor:pointer;
+  background: #a80000;
+  opacity: 0.3;
+}
+
+.input-group{
+	width: 70%;
+
+}
+
+.navbar-form input,.input-group-btn button{
+	font-weight: bold;
+	font-family: Arial;
+	height: 40px;
+	font-size: 20px;
+	border-radius:0;
+}
+
+.navbar-form input:focus ,.input-group-btn button:focus,.input-group-btn button:active:focus{
+    outline:none;
+    box-shadow:none;
+    border-color:lightgray;
+}
+
+.input-group-btn button, .input-group-btn button:hover,.input-group-btn button:active:focus{
+	color: #008600;
+}
+
+.match-block {
+	background: blue;
+	height: 200px;
+	margin: 20px;
+}
+
+.community-edition ,.community-edition2 {
+    color:black;
+	text-transform:uppercase;
+	font-weight: bold;
+	margin: 20px;
+	padding: 20px;
+	background: white;
+	box-shadow: 0px 1px 1px lightgray;
+	transition:.3s ease-in-out;
+    -moz-transition:.3s ease-in-out;
+    -webkit-transition:.3s ease-in-out;
+}
+
+.community-edition:hover{
+    background:#a80000;
+    color:#fff;
+    cursor: pointer;
+}
+.community-edition:hover i {
+    color:#fff;
+}
+.community-edition:hover h4 {
+    color:#fff;
+}
+.community-edition:hover p {
+    color:#fff;
+}
+
+.community-edition2 {
+	margin: 10px 20px 10px 20px;
+}
+
+.tablelist table {
+	text-align: left;
+	margin: 20px 30px 0 30px;
+	width: calc( 100% - 60px);
+}
+
+
+.footer{
+	background: white;
+	height: 60px;	
+    color:#000;
+    padding-top: 20px;
+}
+
+#livesearch {
+	position: absolute;
+	left: 30px;
+	width: calc( 60% - 5px );
+	list-style-type: none;
+    background: white;
+    border: 1 solid green;
+    box-shadow: 0px 1px 1px lightgray;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+#livesearch a,#livesearch a:hover {
+	text-decoration: none;
+}
+
+#livesearch li {	
+	list-style: none;
+	font-size: 20px;    
+}
+
+#livesearch  a li{
+
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+
+	padding-left: 10px; 
+	padding-top: 3px; 
+	padding-bottom: 2px; 
+	text-decoration: none;
+	color: black;
+}
+
+#livesearch  li:hover {
+	
+	background-color: #f9f9f9;
+}
+
+.copyright{
+    text-align:right;
+}
+.copyright p{
+    font-size: 15px;
+}
+.copyright p i{
+    color:#a80000;
+}.copyright p a{
+    color:#a80000;
+}
+
+table {
+color:black;
+
+}
