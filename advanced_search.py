@@ -5,7 +5,7 @@ import re
 '''
     Usage:
         1) start elastic search
-        2) run function simple_search()
+        2) run function advanced_search()
         3) (optional) call from demo
 '''
 
