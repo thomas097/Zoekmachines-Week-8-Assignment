@@ -27,9 +27,34 @@ def create_snippet(lyrics, query, length):
 
 
 # implements simple keyword search in the indexed lyrics
-def advanced_search(es, index, lyrics, artist, N=10, snip_size=20):
+def advanced_search(es, index, lyrics, song, artist, N=10, snip_size=20):
     query =  '({}) and ({})'.format(' or '.join(lyrics), ' or '.join(artist))
     print(query)
+    res = es.search(index=index, body={
+        "query": {
+            "bool":{
+                "must":{[
+                    "query_string":{
+                        "fields":["lyrics"],
+                        "query": lyrics
+                    },
+                    {"match":{"song_title":' or '.join(song)}},
+                    {"match":{"artist":' or '.join(artist)}}
+                ]}
+            }
+        },
+        "size":N
+    })
+    results_list = []
+    for hit in res['hits']['hits']:
+        song = hit['_source']
+        hit = (hit['_id'], song['song_title'], song['artist'], song['genre'], song['year'],
+               create_snippet(song['lyrics'], query, snip_size))
+        results_list.append(hit)
+    return results_list
+
+
+def advanced_search_natural(es, index, query, N=10, snip_size=20):
     res = es.search(index=index, body={
         "query": {
             "bool":{
@@ -54,5 +79,6 @@ def advanced_search(es, index, lyrics, artist, N=10, snip_size=20):
 
 # init elastic search
 es = Elasticsearch(hosts=['http://localhost:9200/'])
-res = advanced_search(es, 'songs', ['single ladies', 'halo'], ['Beyonce', 'Andre'], N=10, snip_size=20)
+#res = advanced_search(es, 'songs', ['single ladies', 'halo'], ['Beyonce', 'Andre'], N=10, snip_size=20)
+res = advanced_search_natural(es, 'songs', 'single ladies or halo and Beyonce', N=10, snip_size=20)
 pprint(res)
