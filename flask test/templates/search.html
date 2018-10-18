@@ -25,7 +25,7 @@
                                         <h4>{{ result[key]["artist"] }}</h4>
                                         <h6>{{ result[key]["song"] }} ({{ result[key]["year"] }})</h6>
                                         <h6>{{ result[key]["genre"] }}</h6>
-                                        <p>{{ result[key]["lyrics"] }}</p>
+                                        <p>{{ result[key]["lyricssnip"] }}</p>
                                     </td>
                                 </tr>
                             </table>
@@ -43,11 +43,16 @@
 
                     <tbody>
                     <tr>
-                        <td> {{ result[key]["lyrics"] }}</td>
+                        <td class="lyrics">
+                            {% for line in result[key]["lyrics"].split("\n")%}
+                                {{ line}}<br>
+                            {% endfor %}
+                        </td>
                         <td></td>
                     </tr>
                     </tbody>
                 </table>
+
             </div>
         </div>
         {% endfor %}

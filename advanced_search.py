@@ -14,11 +14,11 @@ import re
 def create_snippet(lyrics, query, length):
     query_terms = set(query.split(' '))
     lyrics_terms = lyrics.replace('\n', ' ').split(' ')
-    
+
     # loop over ngrams and return the one with the most query terms
     snippet, score = '', -1
-    for i in range(len(lyrics_terms)-length+1):
-        new_snippet = lyrics_terms[i:i+length]
+    for i in range(len(lyrics_terms) - length + 1):
+        new_snippet = lyrics_terms[i:i + length]
         new_score = len(set(new_snippet).intersection(query_terms))
         if new_score >= score:
             snippet = ' '.join(new_snippet)
@@ -27,6 +27,7 @@ def create_snippet(lyrics, query, length):
 
 
 # implements simple keyword search in the indexed lyrics
+<<<<<<< HEAD
 def advanced_search(es, index, lyrics, song, artist, N=10, snip_size=20):
     query =  '({}) and ({})'.format(' or '.join(lyrics), ' or '.join(artist))
     print(query)
@@ -54,31 +55,46 @@ def advanced_search(es, index, lyrics, song, artist, N=10, snip_size=20):
     return results_list
 
 
-def advanced_search_natural(es, index, query, N=10, snip_size=20):
+
+def advanced_search(es, index, lyrics, artist, N=10, snip_size=20):
+    if artist and lyrics:
+        query = '({}) AND ({})'.format(' OR '.join(lyrics), ' OR '.join(artist))
+    elif lyrics:
+        query = '({})'.format(' OR '.join(lyrics))
+    elif artist:
+        query = '({})'.format(' OR '.join(artist))
+    else:
+        return
+    print(query)
     res = es.search(index=index, body={
         "query": {
-            "bool":{
-                "must":{
-                    "query_string":{
-                        "fields":["song_title", "artist"],
+            "bool": {
+                "must": {
+                    "query_string": {
+                        "fields": ["lyrics", "artist"],
                         "query": query
                     }
                 }
             }
         },
-        "size":N
+        "size": N
     })
     results_list = []
     for hit in res['hits']['hits']:
         song = hit['_source']
         hit = (hit['_id'], song['song_title'], song['artist'], song['genre'], song['year'],
-               create_snippet(song['lyrics'], query, snip_size))
+               create_snippet(song['lyrics'], query, snip_size), song["lyrics"])
         results_list.append(hit)
     return results_list
 
 
 # init elastic search
 es = Elasticsearch(hosts=['http://localhost:9200/'])
+<<<<<<< HEAD
 #res = advanced_search(es, 'songs', ['single ladies', 'halo'], ['Beyonce', 'Andre'], N=10, snip_size=20)
 res = advanced_search_natural(es, 'songs', 'single ladies or halo and Beyonce', N=10, snip_size=20)
 pprint(res)
+=======
+# res = advanced_search(es, 'songs', ['single ladies', 'halo'], ['Beyonce', 'Andre'], N=10, snip_size=20)
+# pprint(res)
+>>>>>>> 057ab4b2d74c7b9602b885cb7d4a160582e5428a
