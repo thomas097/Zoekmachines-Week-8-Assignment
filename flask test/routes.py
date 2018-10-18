@@ -19,11 +19,6 @@ def index():
     return render_template("index.html", content=home_page_content)
 
 
-def query_to_lyrics_artist(query):
-    print(query)
-    return 'single ladies halo', "", 'Beyonce', True
-
-
 # enables live recommendation
 @app.route('/gethint.php', methods=["GET", "POST"])
 def phpexample(q="", artist="", lyrics="", songtitle=""):
