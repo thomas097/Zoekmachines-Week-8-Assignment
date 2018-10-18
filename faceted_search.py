@@ -24,39 +24,10 @@ def create_snippet(lyrics, query, length):
             score = new_score
     return snippet
 
-# Parses the searech query in a query suitable for the elastic search.
-def create_search(lyrics, artist):
-    query = ""
-    length = max(len(lyrics), len(artist))
-    for i in range(length):
-        try:
-            query += lyrics[i]
-        except: pass
-        if len(artist) > i:
-            query += " and "
-        try:
-            query += artist[i]
-        except: pass
-        if length > i+1:
-            query += " or "
-    return query
-
-# artist_search(lyrics, artist)
-
-def lyric_search(lyrics, artist):
-    query = ""
-    for i in range(len(lyrics)):
-        query += lyrics[i]
-        if len(lyrics) > i+1:
-            query += " or "
-    query += " and " + artist[0]
-    return query
-
 
 # implements simple keyword search in the indexed lyrics
 def faceted_search(es, index, lyrics, artist, genre_filter, N=10, snip_size=20):
-    #query = lyrics + " and " + artist
-    query = create_search(lyrics, artist)
+    query =  '({}) and ({})'.format(' or '.join(lyrics), ' or '.join(artist))
     print(query)
     res = es.search(index=index, body={
         "query": {

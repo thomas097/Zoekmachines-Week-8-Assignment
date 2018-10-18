@@ -9,6 +9,7 @@ import re
         3) (optional) call from demo
 '''
 
+
 # creates a snippet containing the most amount of words from the query
 def create_snippet(lyrics, query, length):
     query_terms = set(query.split(' '))
@@ -24,39 +25,10 @@ def create_snippet(lyrics, query, length):
             score = new_score
     return snippet
 
-# Parses the searech query in a query suitable for the elastic search.
-def create_search(lyrics, artist):
-    query = ""
-    length = max(len(lyrics), len(artist))
-    for i in range(length):
-        try:
-            query += lyrics[i]
-        except: pass
-        if len(artist) > i:
-            query += " and "
-        try:
-            query += artist[i]
-        except: pass
-        if length > i+1:
-            query += " or "
-    return query
-
-# artist_search(lyrics, artist)
-
-def lyric_search(lyrics, artist):
-    query = "("
-    for i in range(len(lyrics)):
-        query += lyrics[i]
-        if len(lyrics) > i+1:
-            query += " or "
-    query += ") and " + artist[0]
-    return query
-
 
 # implements simple keyword search in the indexed lyrics
 def advanced_search(es, index, lyrics, artist, N=10, snip_size=20):
-    #query = lyrics + " and " + artist
-    query = lyric_search(lyrics, artist)
+    query =  '({}) and ({})'.format(' or '.join(lyrics), ' or '.join(artist))
     print(query)
     res = es.search(index=index, body={
         "query": {
@@ -82,5 +54,5 @@ def advanced_search(es, index, lyrics, artist, N=10, snip_size=20):
 
 # init elastic search
 es = Elasticsearch(hosts=['http://localhost:9200/'])
-res = advanced_search(es, 'songs', ['single ladies', 'halo'], ['Beyonce'], N=10, snip_size=20)
+res = advanced_search(es, 'songs', ['single ladies', 'halo'], ['Beyonce', 'Andre'], N=10, snip_size=20)
 pprint(res)
