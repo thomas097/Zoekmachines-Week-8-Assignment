@@ -42,7 +42,11 @@
 
                     <tbody>
                     <tr>
-                        <td> {{ result[key]["lyrics"] }}</td>
+                        <td class="lyrics">
+                            {% for line in result[key]["lyrics"].split("\n")%}
+                            {{ line}}<br>
+                            {% endfor %}
+                        </td>
                         <td></td>
                     </tr>
                     </tbody>

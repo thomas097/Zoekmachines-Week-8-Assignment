@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-# from simple_search import *
+from simple_search import *
 from advanced_search import *
 
 app = Flask(__name__)
@@ -19,14 +19,24 @@ def index():
     return render_template("index.html", content=home_page_content)
 
 
+def query_to_lyrics_artist(query):
+    print(query)
+    return 'single ladies halo', "", 'Beyonce', True
+
+
 # enables live recommendation
 @app.route('/gethint.php', methods=["GET", "POST"])
-def phpexample(q=""):
+def phpexample(q="", artist="", lyrics="", songtitle=""):
     global result
     q = request.args.get("q", q)
-    # print("phpexample", q)
-    lyrics, artist, _ = query_to_lyrics_artist(q)
-    tempres = advanced_search(es, 'songs', lyrics, artist, N=10, snip_size=20)
+    artist = request.args.get("artist", artist)
+    songtitle = request.args.get("songtitle", songtitle)
+    lyrics = request.args.get("lyrics", lyrics)
+
+    if artist or songtitle or lyrics:
+        tempres = advanced_search(es, 'songs', lyrics, songtitle, artist, N=10, snip_size=20)
+    else:
+        tempres = simple_search(es, 'songs', q, N=10, snip_size=20)
 
     result = {x[0]: {"artist": x[2], "song": x[1], "genre": x[3], "year": x[4], "lyricssnip": x[5], "lyrics": x[6]} for
               x in tempres}
@@ -47,18 +57,16 @@ def parse_results(q=""):
     return render_template("result.html", result={q: values})
 
 
-def query_to_lyrics_artist(query):
-    return ['single ladies', 'halo'], ['Beyonce'], True
-
-
 # route if answer for query is not directly found
 @app.route('/search/', methods=["GET", "POST"])
-def search(q="", lyrics="", artist=""):
+def search(q="", lyrics="", artist="", songtitle=""):
     q = request.args.get("q", q)
     artist = request.args.get("artist", artist)
+    song_title = request.args.get("songtitle", songtitle)
     lyrics = request.args.get("lyrics", lyrics)
-    print("search", artist, lyrics)
-    tempres = advanced_search(es, 'songs', lyrics.split(), artist.split(), N=10, snip_size=20)
+
+    print("search", artist, lyrics, song_title)
+    tempres = advanced_search(es, 'songs', lyrics, song_title, artist, N=10, snip_size=20)
     # convert to usable dictionary
     tempres = {x[0]: {"artist": x[2], "song": x[1], "genre": x[3], "year": x[4], "lyricssnip": x[5],
                       "lyrics": x[6]} for x in tempres}

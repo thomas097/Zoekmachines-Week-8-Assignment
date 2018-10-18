@@ -12,9 +12,13 @@ body{
 	width: auto;
 	border-radius: 0;
 	background: white;
-	height: 200px;
-	padding-top: 20px;
+	height: 150px;
+	padding-top: 5px;
 	box-shadow: 0px 0px 1px lightgray;
+}
+
+.navbar-brand {
+    margin-top:40px;
 }
 
 
@@ -31,14 +35,17 @@ body{
 	font-weight: bold;
 	font-family: Arial;
 }
+
 .blue {
 	font-size: 25px;
 	color: #006565;
 	font-weight: bold;
 	font-family: Arial;
 }
+
 .red {
-	font-size: 45px;
+    top:90px;
+	font-size: 55px;
 	color: #a80000;
 	font-weight: bold;
 	font-family: Arial;
@@ -47,7 +54,7 @@ body{
 .centralwrap {
     position: absolute;
     width: 100%;
-    top: 200px;
+    top: 150px;
     bottom: 60px;
     overflow-y:scroll;
     overflow-x:hidden;
@@ -60,41 +67,17 @@ body{
   height: 12px; /* for horizontal scrollbars */
 }
 
-::-webkit-scrollbar-track
-{
+::-webkit-scrollbar-track {
   cursor:pointer;
   background: rgba(0, 0, 0, 0.0);
 }
 
-::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb:hover
-{
-  cursor:pointer;
-  background: #a80000;
-  opacity: 0.3;
+::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb:hover {
+    cursor:pointer;
+    background: #a80000;
+    opacity: 0.3;
 }
 
-.input-group{
-	width: 70%;
-
-}
-
-.navbar-form input,.input-group-btn button{
-	font-weight: bold;
-	font-family: Arial;
-	height: 40px;
-	font-size: 20px;
-	border-radius:0;
-}
-
-.navbar-form input:focus ,.input-group-btn button:focus,.input-group-btn button:active:focus{
-    outline:none;
-    box-shadow:none;
-    border-color:lightgray;
-}
-
-.input-group-btn button, .input-group-btn button:hover,.input-group-btn button:active:focus{
-	color: #008600;
-}
 
 .match-block {
 	background: blue;
@@ -140,18 +123,45 @@ body{
 	width: calc( 100% - 60px);
 }
 
-
 .footer{
 	background: white;
 	height: 60px;	
     color:#000;
     padding-top: 20px;
+    box-shadow: 1px  1px 1px 1px lightgray;
+
+}
+
+.input-group{
+	width: 500px;
+}
+
+.navbar-form input,.input-group-btn button{
+	font-weight: bold;
+	font-family: Arial;
+	height: 30px;
+	font-size: 15px;
+	border-radius:0;
+}
+
+.input-group-btn button{
+    margin-top:90px;
+}
+
+.navbar-form input:focus ,.input-group-btn button:focus,.input-group-btn button:active:focus{
+    outline:none;
+    box-shadow:none;
+    border-color:lightgray;
+}
+
+.input-group-btn button, .input-group-btn button:hover,.input-group-btn button:active:focus{
+	color: #008600;
 }
 
 #livesearch {
 	position: absolute;
-	left: 30px;
-	width: calc( 60% - 5px );
+	left: 32px;
+	width: 455px;
 	list-style-type: none;
     background: white;
     border: 1 solid green;
@@ -159,6 +169,10 @@ body{
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
+}
+
+#livesearch input {
+    display: inline;
 }
 
 #livesearch a,#livesearch a:hover {
@@ -171,10 +185,8 @@ body{
 }
 
 #livesearch  a li{
-
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
-
 	padding-left: 10px; 
 	padding-top: 3px; 
 	padding-bottom: 2px; 
@@ -183,7 +195,6 @@ body{
 }
 
 #livesearch  li:hover {
-	
 	background-color: #f9f9f9;
 }
 
