@@ -6,7 +6,7 @@ https://github.com/thomas097/Zoekmachines-Week-8-Assignment/wiki/Zoekmachines-El
 
 ``` Progress:
 Index: Af [alleen nog even de pre-processing afstemmen]
-Wikipedia linking: Voor nummers af, voor artiesten nog bezig [voor dit weekend]
+Wikipedia linking: Voor nummers af, voor artiesten een hele lage recall
 Q1: af, simple_search() [als strikte conjunctieve query]
 Q2: af, advanced_search()
 Q3: af, word_cloud() [output is wordcloud.png]
