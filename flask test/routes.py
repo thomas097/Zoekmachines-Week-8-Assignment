@@ -1,9 +1,12 @@
 from flask import Flask, request, render_template
 from simple_search import *
 from advanced_search import *
+from timeline import new_timeline
+import matplotlib
+
+matplotlib.use('Agg')
 
 app = Flask(__name__)
-
 app.secret_key = "sdfw4h53jq"
 
 PATH = ""
@@ -29,9 +32,9 @@ def phpexample(q="", artist="", lyrics="", songtitle=""):
     lyrics = request.args.get("lyrics", lyrics)
 
     if artist or songtitle or lyrics:
-        tempres = advanced_search(es, 'songs', lyrics, songtitle, artist, N=10, snip_size=20)
+        tempres, res = advanced_search(es, 'songs', lyrics, songtitle, artist, N=10, snip_size=20)
     else:
-        tempres = simple_search(es, 'songs', q, N=10, snip_size=20)
+        tempres, res = simple_search(es, 'songs', q, N=10, snip_size=20)
 
     result = {x[0]: {"artist": x[2], "song": x[1], "genre": x[3], "year": x[4], "lyricssnip": x[5], "lyrics": x[6]} for
               x in tempres}
@@ -60,13 +63,16 @@ def search(q="", lyrics="", artist="", songtitle=""):
     song_title = request.args.get("songtitle", songtitle)
     lyrics = request.args.get("lyrics", lyrics)
 
-    print("search", artist, lyrics, song_title)
-    tempres = advanced_search(es, 'songs', lyrics, song_title, artist, N=10, snip_size=20)
+    # print("search", artist, lyrics, song_title)
+    tempres, res = advanced_search(es, 'songs', lyrics, song_title, artist, N=1000, snip_size=20)
+
+    figure = new_timeline(res)
+
     # convert to usable dictionary
     tempres = {x[0]: {"artist": x[2], "song": x[1], "genre": x[3], "year": x[4], "lyricssnip": x[5],
-                      "lyrics": x[6]} for x in tempres}
+                      "lyrics": x[6]} for x in tempres[:10]}
 
-    return render_template("search.html", result=tempres)
+    return render_template("search.html", result=[tempres, figure])
 
 
 if __name__ == "__main__":
