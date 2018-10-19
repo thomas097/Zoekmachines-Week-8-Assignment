@@ -30,10 +30,7 @@ body{
 }
 
 .green {
-	font-size: 25px;
 	color: #008600;
-	font-weight: bold;
-	font-family: Arial;
 }
 
 .blue {
@@ -218,4 +215,12 @@ color:black;
 .lyrics {
     text-transform:none !important;
     font-size : 1 !important;
+}
+
+
+.timelineimg  {
+    position:relative !important;
+    width:100% !important;
+    max-height:150px;
+    margin-top:-10px;
 }

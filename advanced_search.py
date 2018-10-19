@@ -27,6 +27,34 @@ def create_snippet(lyrics, query, length):
 
 
 # implements simple keyword search in the indexed lyrics
+def advanced_search_must(es, index, lyrics, song_title, artist, N=10, snip_size=20):
+    must_list = []
+    if lyrics:
+        must_list.append({"match": {"lyrics": lyrics}})
+    if song_title:
+        must_list.append({"match": {"song_title": song_title}})
+    if artist:
+        must_list.append({"match": {"artist": artist}})
+
+    res = es.search(index=index, body={
+        "query": {
+            "bool": {
+                "must": must_list
+            }
+        },
+        "size": N})
+    results_list = []
+    for hit in res['hits']['hits']:
+        song = hit['_source']
+        hit = (hit['_id'], song['song_title'], song['artist'], song['genre'], song['year'],
+               create_snippet(song['lyrics'], lyrics, snip_size), song["lyrics"])
+        results_list.append(hit)
+
+    # results_list, and res to use for timeline
+    return results_list, res
+
+
+# implements simple keyword search in the indexed lyrics
 def advanced_search(es, index, lyrics, song_title, artist, N=10, snip_size=20):
     res = es.search(index=index, body={
         "query": {
