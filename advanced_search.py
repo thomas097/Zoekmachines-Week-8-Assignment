@@ -27,7 +27,7 @@ def create_snippet(lyrics, query, length):
 
 
 # implements simple keyword search in the indexed lyrics
-def advanced_search_must(es, index, lyrics, song_title, artist, N=10, snip_size=20):
+def advanced_search_must(es, index, lyrics, song_title, artist, _from=0, N=10, snip_size=20):
     must_list = []
     if lyrics:
         must_list.append({"match": {"lyrics": lyrics}})
@@ -42,7 +42,9 @@ def advanced_search_must(es, index, lyrics, song_title, artist, N=10, snip_size=
                 "must": must_list
             }
         },
-        "size": N})
+        "size": N,
+        "from": _from})
+    
     results_list = []
     for hit in res['hits']['hits']:
         song = hit['_source']
@@ -55,7 +57,7 @@ def advanced_search_must(es, index, lyrics, song_title, artist, N=10, snip_size=
 
 
 # implements simple keyword search in the indexed lyrics
-def advanced_search(es, index, lyrics, song_title, artist, N=10, snip_size=20):
+def advanced_search(es, index, lyrics, song_title, artist, _from=0, N=10, snip_size=20):
     res = es.search(index=index, body={
         "query": {
             "bool": {
@@ -66,7 +68,9 @@ def advanced_search(es, index, lyrics, song_title, artist, N=10, snip_size=20):
                 ]
             }
         },
-        "size": N})
+        "size": N,
+        "from": _from})
+    
     results_list = []
     for hit in res['hits']['hits']:
         song = hit['_source']
