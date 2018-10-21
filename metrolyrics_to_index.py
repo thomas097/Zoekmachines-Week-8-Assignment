@@ -11,6 +11,10 @@ import pandas as pd
     3) run this script
 '''
 
+# cleans the terrible data set format
+def camelcase(string):
+    return ' '.join([w[0].upper()+w[1:] for w in string.split('-')])
+
 # define index name and document type
 index = 'songs'
 _type = 'song'
@@ -20,13 +24,17 @@ df_cols = ['title', 'year', 'artist', 'genre', 'lyrics']
 df = pd.read_csv('380000-lyrics-from-metrolyrics/lyrics.csv', dtype=str,
                  sep=',', usecols=[1, 2, 3, 4, 5], names=df_cols)
 df = df.dropna()
-print(df.shape)
-
-# TODO: pre-processing
+print('Shape of data set;', df.shape)
 
 # convert each song into elastic search format and append to list of docs
 docs = []
 for i, row in tqdm(df.iterrows()):
+
+    # pre-process
+    row['title'] = camelcase(row['title'])
+    row['artist'] = camelcase(row['artist'])
+    row['genre'] = camelcase(row['genre'])
+    
     doc = {
         '_index' : index,
         '_type' : _type,
@@ -47,6 +55,7 @@ es = Elasticsearch(hosts=['http://localhost:9200/'])
 if es.indices.exists(index=index):
     es.indices.delete(index=index)#, ignore=[400, 404])
     print('Previous version of index removed!\nReplacing with new!')
+print('This may take a few minutes...')
 
 # index file
 helpers.bulk(es, docs)
@@ -56,4 +65,3 @@ es.indices.refresh(index=index)
 
 # DONE!
 print('done!')
-
