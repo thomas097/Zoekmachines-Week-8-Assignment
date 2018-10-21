@@ -12,10 +12,10 @@ import numpy as np
 '''
 
 
-# implements simple keyword search in the indexed lyrics
-# returns N tuples of (docID, title, artist, genre, year, lyrics snippet)
+# implements the timeline feature by resubmitting a query, with
+# a larger number of documents and only release dates.
 def timeline(es, index, lyrics, song_title, artist, path):
-    # define query to obtain the release dates of 10000 songs
+    # define query to obtain the release dates songs
     dict_query = {"_source": ["year"],
                   "query":{
                       "bool": {
