@@ -50,7 +50,7 @@ def simple_search(es, index, query, _from=0, N=10, snip_size=20):
         hit = (hit['_id'], song['song_title'], song['artist'], song['genre'],
                song['year'], create_snippet(song['lyrics'], query, snip_size))
         results_list.append(hit)
-    return results_list
+    return results_list, res
 
 
 # init elastic search
