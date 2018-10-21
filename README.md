@@ -5,8 +5,8 @@ This repository contains the Elastic Search asignment for Zoekmachines 2018. The
 https://github.com/thomas097/Zoekmachines-Week-8-Assignment/wiki/Zoekmachines-Elastic-Search-Assignment
 
 ``` Progress:
-Index: Af [alleen nog even de pre-processing afstemmen]
-Wikipedia linking: Voor nummers af, voor artiesten een hele lage recall
+Index: Af
+Wikipedia linking: Af [voor nummers]
 Q1: af, simple_search() [als strikte conjunctieve query]
 Q2: af, advanced_search()
 Q3: af, word_cloud() [output is wordcloud.png]
