@@ -4,11 +4,9 @@ import pandas as pd
 
 '''
     USAGE:
-    1) download metrolyrics data set
-    2) extract file in same folder where this file is located
-    3) start elastic search from Downloads/elasticsearch-.6.4.2
+    1) start elastic search from Downloads/elasticsearch-.6.4.2
        with ./bin/elasticsearch (may take a minute to boot up)
-    3) run this script
+    2) run this script
 '''
 
 # cleans the terrible data set format
@@ -20,9 +18,9 @@ index = 'songs'
 _type = 'song'
 
 # load metrolyrics dataset into pandas DataFrame
-df_cols = ['title', 'year', 'artist', 'genre', 'lyrics']
-df = pd.read_csv('380000-lyrics-from-metrolyrics/lyrics.csv', dtype=str,
-                 sep=',', usecols=[1, 2, 3, 4, 5], names=df_cols)
+df_cols = ['title', 'year', 'artist', 'genre', 'lyrics', 'wiki_url']
+df = pd.read_csv('lyrics_aug.csv', dtype=str,
+                 sep=',', usecols=[1, 2, 3, 4, 5, 6], names=df_cols)
 df = df.dropna()
 print('Shape of data set;', df.shape)
 
@@ -44,6 +42,7 @@ for i, row in tqdm(df.iterrows()):
             'artist' : row['artist'],
             'genre' : row['genre'],
             'lyrics' : row['lyrics'],
+            'wiki_url' : row['wiki_url'],
         }
     }
     docs.append(doc)
@@ -53,7 +52,7 @@ es = Elasticsearch(hosts=['http://localhost:9200/'])
 
 # clear index if it exists
 if es.indices.exists(index=index):
-    es.indices.delete(index=index)#, ignore=[400, 404])
+    es.indices.delete(index=index)
     print('Previous version of index removed!\nReplacing with new!')
 print('This may take a few minutes...')
 
