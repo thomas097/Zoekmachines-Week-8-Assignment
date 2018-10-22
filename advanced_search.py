@@ -83,6 +83,6 @@ def advanced_search(es, index, lyrics, song_title, artist, _from=0, N=10, snip_s
 
 
 # init elastic search
-es = Elasticsearch(hosts=['http://localhost:9200/'])
+#es = Elasticsearch(hosts=['http://localhost:9200/'])
 # res = advanced_search(es, 'songs', '', '', 'eminem beyonce', N=10, snip_size=20)
 # pprint(res)
