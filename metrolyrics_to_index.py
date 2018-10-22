@@ -19,7 +19,7 @@ _type = 'song'
 
 # load metrolyrics dataset into pandas DataFrame
 df_cols = ['title', 'year', 'artist', 'genre', 'lyrics']
-df = pd.read_csv('lyrics_aug.csv', dtype=str, header=0,
+df = pd.read_csv('lyrics.csv', dtype=str, header=0,
                  sep=',', usecols=[1, 2, 3, 4, 5], names=df_cols)
 df = df.dropna()
 print(df.head(6))
