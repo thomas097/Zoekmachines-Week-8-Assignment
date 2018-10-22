@@ -54,7 +54,7 @@ def simple_search(es, index, query, _from=0, N=10, snip_size=20):
 
 
 # init elastic search
-es = Elasticsearch(hosts=['http://localhost:9200/'])
-res = simple_search(es, 'songs', 'lose yourself in the music better never let it go', N=10, snip_size=20)
-pprint(res)
+#es = Elasticsearch(hosts=['http://localhost:9200/'])
+#res = simple_search(es, 'songs', 'lose yourself in the music better never let it go', N=10, snip_size=20)
+#pprint(res)
 
