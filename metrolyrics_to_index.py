@@ -18,9 +18,9 @@ index = 'songs'
 _type = 'song'
 
 # load metrolyrics dataset into pandas DataFrame
-df_cols = ['title', 'year', 'artist', 'genre', 'lyrics']
-df = pd.read_csv('lyrics.csv', dtype=str, header=0,
-                 sep=',', usecols=[1, 2, 3, 4, 5], names=df_cols)
+df_cols = ['title', 'year', 'artist', 'genre', 'lyrics', 'url']
+df = pd.read_csv('lyrics_aug.csv', dtype=str, header=0,
+                 sep=',', usecols=[1, 2, 3, 4, 5, 6], names=df_cols)
 df = df.dropna()
 print(df.head(6))
 print('Shape of data set;', df.shape)
@@ -43,6 +43,7 @@ for i, row in tqdm(df.iterrows()):
             'artist' : row['artist'],
             'genre' : row['genre'],
             'lyrics' : row['lyrics'],
+            'url':row['url']
         }
     }
     docs.append(doc)
