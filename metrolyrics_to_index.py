@@ -18,10 +18,11 @@ index = 'songs'
 _type = 'song'
 
 # load metrolyrics dataset into pandas DataFrame
-df_cols = ['title', 'year', 'artist', 'genre', 'lyrics', 'wiki_url']
-df = pd.read_csv('lyrics_aug.csv', dtype=str,
-                 sep=',', usecols=[1, 2, 3, 4, 5, 6], names=df_cols)
+df_cols = ['title', 'year', 'artist', 'genre', 'lyrics']
+df = pd.read_csv('lyrics_aug.csv', dtype=str, header=0,
+                 sep=',', usecols=[1, 2, 3, 4, 5], names=df_cols)
 df = df.dropna()
+print(df.head(6))
 print('Shape of data set;', df.shape)
 
 # convert each song into elastic search format and append to list of docs
@@ -42,7 +43,6 @@ for i, row in tqdm(df.iterrows()):
             'artist' : row['artist'],
             'genre' : row['genre'],
             'lyrics' : row['lyrics'],
-            'wiki_url' : row['wiki_url'],
         }
     }
     docs.append(doc)
