@@ -6,11 +6,11 @@ https://github.com/thomas097/Zoekmachines-Week-8-Assignment/wiki/Zoekmachines-El
 
 ``` Progress:
 Index: Af
-Wikipedia linking: Af [voor nummers]
+Wikipedia linking: Af [maar zeer buggy, dus misschien een slecht idee!]
 Q1: af, simple_search() [als strikte conjunctieve query maar is opzich irrelevant voor demo]
 Q2: af, advanced_search() [kleine aanpassing gemaakt met from=0 parameter]
-Q3: af, word_cloud() [output word uitgeschreven; wordcloud.png]
-Q4: af, timeline() [output word uitgeschreven; timeline.png]
+Q3: af
+Q4: af
 Q5: Heeft een range voor tijd [faceted_test.py heeft een sample met filtering + facet counts]
 Q6: ?
 Demo: Nathan bezig
