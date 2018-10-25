@@ -1,0 +1,53 @@
+<topic number="1">
+    <query>
+    	lose yourself mom's spaghetti
+    </query>
+    <description>
+    	A simple query in which we are looking for the various versions of
+    	the song "lose yourself" by Eminem (Level: easy).
+    </description>
+</topic>
+
+
+<topic number="2">
+    <query>
+    	halo
+    </query>
+    <description>
+    	A more difficult query (single word) in which we are looking for 
+    	various versions of Beyonce's halo from lyrics only (Level: harder).
+    </description>
+</topic>
+
+
+<topic number="3">
+    <query>
+    	sandstorm
+    </query>
+    <description>
+    	Looking for a specific song called "sandstorm" from Darude (level: harder).
+    </description>
+</topic>
+
+
+<topic number="4">
+    <query>
+    	zij gelooft in mij
+    </query>
+    <description>
+    	Looking for a song called "Zij gelooft in mij" by Andre Hazes 
+    	(level: hardest).
+    </description>
+</topic>
+
+
+<topic number="5">
+    <query>
+    	run wit us
+    </query>
+    <description>
+    	Looking to find the song from 2pac called "thug love" (level: hardest).
+    </description>
+</topic>
+
+
