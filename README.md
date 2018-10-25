@@ -11,7 +11,7 @@ Q1: af, simple_search() [als strikte conjunctieve query maar is opzich irrelevan
 Q2: af, advanced_search() [kleine aanpassing gemaakt met from=0 parameter]
 Q3: af
 Q4: af
-Q5: bijna af [alleen nog undo button]
+Q5: af
 Q6: ?
 Demo: Nathan bezig
 ```
