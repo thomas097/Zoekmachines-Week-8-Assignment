@@ -1,6 +1,6 @@
 <topic number="1">
     <query>
-    	lose yourself mom's spaghetti
+    	Lose yourself mom's spaghetti
     </query>
     <description>
     	A simple query in which we are looking for the various versions of
@@ -11,7 +11,7 @@
 
 <topic number="2">
     <query>
-    	see your halo
+    	See your halo
     </query>
     <description>
     	A more difficult query (single word) in which we are looking for 
@@ -22,7 +22,7 @@
 
 <topic number="3">
     <query>
-    	sandstorm
+    	Sandstorm
     </query>
     <description>
     	Looking for a specific song called "sandstorm" from Darude (level: harder).
@@ -32,7 +32,7 @@
 
 <topic number="4">
     <query>
-    	zij gelooft in mij
+    	Zij gelooft in mij
     </query>
     <description>
     	Looking for a song called "Zij gelooft in mij" by Andre Hazes 
@@ -43,7 +43,7 @@
 
 <topic number="5">
     <query>
-    	run wit us
+    	Run with us
     </query>
     <description>
     	Looking to find the song from 2pac called "thug love" (level: hardest).
